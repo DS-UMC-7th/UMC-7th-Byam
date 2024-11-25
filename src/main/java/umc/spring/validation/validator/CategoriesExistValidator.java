@@ -14,10 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
 
+    private final MemberCommandServiceImpl memberCommandServiceImpl;
 
-  private final MemberCommandServiceImpl memberCommandServiceImpl;
-
-  @Override
+    @Override
     public void initialize(ExistCategories constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
