@@ -13,7 +13,8 @@ public enum SuccessStatus implements BaseCode {
     // 일반적인 응답
     _OK(HttpStatus.OK, "COMMON200", "성공입니다."),
 
-    CREATED_REVIEW(HttpStatus.CREATED,"REVIEW201","리뷰가 성공적으로 작성되었습니다.");
+    CREATED_REVIEW(HttpStatus.CREATED,"REVIEW201","리뷰가 성공적으로 작성되었습니다."),
+    CREATED_MISSION(HttpStatus.CREATED,"MISSION201","미션이 성공적으로 등록되었습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

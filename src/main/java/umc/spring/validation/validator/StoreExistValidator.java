@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.repository.StoreRepository.StoreRepository;
 import umc.spring.validation.annotation.ExistStore;
 @Component
@@ -22,6 +23,13 @@ public class StoreExistValidator implements ConstraintValidator<ExistStore, Long
             return false;
         }
 
-        return storeRepository.existsById(storeId); // Todo : 추후 리팩토링
+        boolean isValid = storeRepository.existsById(storeId); // Todo : 추후 리팩토링
+
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.getMessage()).addConstraintViolation();
+        }
+
+        return isValid;
     }
 }
